@@ -30,9 +30,13 @@ def main():
 
     dt = 0
 
+    score = 0
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                print("Game Over")
+                print("Score: " + str(score))
                 return
 
         for obj in updatable:
@@ -41,10 +45,12 @@ def main():
         for obj in asteroids:
             if obj.collide(player):
                 print ("Game Over")
+                print("Score: " + str(score))
                 sys.exit()
 
             for shot in shots:
                  if shot.collide(obj):
+                    score += 1
                     obj.split()
                     shot.kill()
 
